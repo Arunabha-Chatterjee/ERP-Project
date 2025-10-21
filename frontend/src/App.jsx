@@ -1,14 +1,15 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
+import Customer from "./pages/staff/Customer.jsx";
+import Product from "./pages/staff/Product.jsx";
+import Invoice from "./component/invoice/Invoice.jsx";
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div>
-        Arunabha Chatterjee
+    <div className='w-screen h-screen'>
+        <Invoice/>
     </div>
   )
 }
