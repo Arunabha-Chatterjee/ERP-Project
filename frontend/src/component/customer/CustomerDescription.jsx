@@ -2,38 +2,38 @@ import React from 'react';
 
 const CustomerDescription = () => {
     return (
-        <div className='w-full h-auto py-2 pl-3 border-b border-gray-900'>
-            <table className=''>
+        <div className='w-full h-auto'>
+            <table className='w-full table-auto border border-gray-800'>
                 <tbody>
-                <tr >
-                    <td className='py-1 font-semibold text-gray-400'>Id:</td>
+                <tr className='border-b border-gray-800'>
+                    <td className='py-1 pl-2 font-semibold text-gray-300 border-r border-gray-800'>Id</td>
                     <td className='py-1 pl-2'>782858</td>
                 </tr>
 
-                <tr>
-                    <td className='py-1 font-semibold text-gray-400'>Email:</td>
-                    <td className='py-1  pl-2'>
+                <tr className='border-b border-gray-800'>
+                    <td className='py-1 pl-2 font-semibold text-gray-300 border-r border-gray-800'>Email</td>
+                    <td className='py-1 pl-2'>
                         arunabha@gmail.com
                     </td>
                 </tr>
 
-                <tr>
-                    <td className='py-1 font-semibold text-gray-400'>Mobile:</td>
+                <tr className='border-b border-gray-800'>
+                    <td className='py-1 pl-2 font-semibold text-gray-300 border-r border-gray-800'>Mobile</td>
                     <td className='py-1 pl-2'>7845127845</td>
                 </tr>
 
-                <tr>
-                    <td className='py-1 font-semibold text-gray-400'>Address:</td>
+                <tr className='border-b border-gray-800'>
+                    <td className='py-1 pl-2 font-semibold text-gray-300 border-r border-gray-800'>Address</td>
                     <td className='py-1 pl-2'>123 Park Street</td>
                 </tr>
 
-                <tr>
-                    <td className='py-1 font-semibold text-gray-400'>City:</td>
+                <tr className='border-b border-gray-800'>
+                    <td className='py-1 pl-2 font-semibold text-gray-300 border-r border-gray-800'>City</td>
                     <td className='py-1 pl-2'>Kolkata</td>
                 </tr>
 
-                <tr>
-                    <td className='py-1 font-semibold text-gray-400'>Pin:</td>
+                <tr className='border-b border-gray-800'>
+                    <td className='py-1 pl-2 font-semibold text-gray-300 border-r border-gray-800'>Pin</td>
                     <td className='py-1 pl-2'>700014</td>
                 </tr>
                 </tbody>
