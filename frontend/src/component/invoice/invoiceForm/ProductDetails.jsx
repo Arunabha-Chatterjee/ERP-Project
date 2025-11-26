@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from "../common/Input.jsx";
+import Input from "../../common/Input.jsx";
 import {useForm} from "react-hook-form";
 
 const ProductDetails = () => {

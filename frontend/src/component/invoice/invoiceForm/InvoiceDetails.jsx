@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from "../common/Input.jsx";
-import Select from "../common/Select.jsx";
+import Input from "../../common/Input.jsx";
+import Select from "../../common/Select.jsx";
 import {useForm} from "react-hook-form";
 
 const InvoiceDetails = () => {

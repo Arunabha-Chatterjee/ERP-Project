@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from '../../component/layout/Header';
 import DashboardStats from '../../component/dashboard/DashboardStats';
-import InvoiceItem from '../../component/invoice/InvoiceItem';
+import InvoiceItem from '../../component/invoice/InvoiceItem.jsx';
 
 const Dashboard = () => {
     return (
-        <div className='h-screen w-screen bg-black text-white'>
+        <div className='w-screen h-screen bg-black text-white'>
             <Header />
             <DashboardStats />
             <div className='w-full grid grid-cols-2'>

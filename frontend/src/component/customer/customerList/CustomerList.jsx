@@ -7,10 +7,7 @@ const CustomerList = () => {
         <div className='border-r border-gray-600 w-full h-full flex flex-col'>
             <CustomerListHeader/>
 
-            <div className='overflow-x-auto flex-1
-                    [&::-webkit-scrollbar]:w-2
-                    [&::-webkit-scrollbar-thumb]:rounded-full
-                    dark:[&::-webkit-scrollbar-thumb]:bg-gray-400'>
+            <div className='overflow-auto flex-1 min-h-0'>
                 <CustomerListRow/>
                 <CustomerListRow/>
                 <CustomerListRow/>

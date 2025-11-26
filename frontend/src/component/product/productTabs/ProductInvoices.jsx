@@ -6,10 +6,7 @@ const ProductInvoices = () => {
 
             <div className='w-full h-auto text-sm font-semibold pl-3 pt-4 pb-2 '>Invoice Details</div>
 
-            <div className='flex-1 text-sm overflow-y-auto
-                    [&::-webkit-scrollbar]:w-2
-                    [&::-webkit-scrollbar-thumb]:rounded-full
-                    dark:[&::-webkit-scrollbar-thumb]:bg-gray-400'>
+            <div className='flex-1 text-sm overflow-y-auto min-h-0'>
                 <table className='w-full table-auto '>
                     <thead>
                     <tr className='border-b border-gray-800 bg-black sticky top-0'>
@@ -23,6 +20,30 @@ const ProductInvoices = () => {
                     </thead>
 
                     <tbody className='text-sm text-gray-300 border-b border-gray-900'>
+                    <tr className='border-b border-gray-900'>
+                        <td className='py-1.5 pl-3'>1</td>
+                        <td className='py-1.5'>7828624</td>
+                        <td className='py-1.5'>&#8377;8546</td>
+                        <td className='py-1.5'>Arunabha Chatterjee</td>
+                        <td className='py-1.5 text-green-600'>Paid</td>
+                        <td className='py-1.5'>19/04/2025</td>
+                    </tr>
+                    <tr className='border-b border-gray-900'>
+                        <td className='py-1.5 pl-3'>1</td>
+                        <td className='py-1.5'>7828624</td>
+                        <td className='py-1.5'>&#8377;8546</td>
+                        <td className='py-1.5'>Arunabha Chatterjee</td>
+                        <td className='py-1.5 text-green-600'>Paid</td>
+                        <td className='py-1.5'>19/04/2025</td>
+                    </tr>
+                    <tr className='border-b border-gray-900'>
+                        <td className='py-1.5 pl-3'>1</td>
+                        <td className='py-1.5'>7828624</td>
+                        <td className='py-1.5'>&#8377;8546</td>
+                        <td className='py-1.5'>Arunabha Chatterjee</td>
+                        <td className='py-1.5 text-green-600'>Paid</td>
+                        <td className='py-1.5'>19/04/2025</td>
+                    </tr>
                     <tr className='border-b border-gray-900'>
                         <td className='py-1.5 pl-3'>1</td>
                         <td className='py-1.5'>7828624</td>

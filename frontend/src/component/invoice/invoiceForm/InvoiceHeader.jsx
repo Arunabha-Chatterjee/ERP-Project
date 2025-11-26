@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from '../../assets/Logo';
-import Input from '../common/Input'
+import Logo from '../../../assets/Logo.jsx';
+import Input from '../../common/Input.jsx'
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
 

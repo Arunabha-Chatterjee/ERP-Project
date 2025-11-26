@@ -1,17 +1,13 @@
-import { useState } from 'react'
+import {useState} from 'react'
 import './App.css'
 
-import Customer from "./pages/staff/Customer.jsx";
-import Product from "./pages/staff/Product.jsx";
-import Invoice from "./component/invoice/Invoice.jsx";
+import {Outlet, RouterProvider} from "react-router-dom";
 
 function App() {
 
-  return (
-    <div className='w-screen h-screen'>
-        <Customer/>
-    </div>
-  )
+    return (
+        <Outlet/>
+    )
 }
 
 export default App

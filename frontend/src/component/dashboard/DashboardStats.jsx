@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 
 const DashboardStats = () => {
 
@@ -6,6 +7,8 @@ const DashboardStats = () => {
         style: 'currency',
         currency: 'INR',
     }).format(74562);
+
+    const navigate = useNavigate();
 
     return (
         <div className='w-full h-auto py-10 flex flex-col justify-between gap-5 items-center'>
@@ -33,7 +36,10 @@ const DashboardStats = () => {
 
                 <div className='justify-self-end pr-7'>
                     <button className='font-semibold bg-black py-1.5 px-2 text-white
-                        rounded-sm hover:bg-gray-800 cursor-pointer'>
+                        rounded-sm hover:bg-gray-800 cursor-pointer'
+                    onClick={()=>{
+                       navigate('/invoices')
+                    }}>
                         + New Invoice
                         </button>
                 </div>

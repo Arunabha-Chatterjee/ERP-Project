@@ -11,3 +11,14 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: white !important; /* text color on focus */
   caret-color: white; /* cursor color on focus */
 }
+
+
+
+::-webkit-scrollbar {
+  width: 8px;              /* width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;         /* scrollbar handle */
+  border-radius: 4px;       /* rounded handle */
+}
