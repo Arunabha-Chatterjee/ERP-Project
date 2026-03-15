@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
-import com.example.backend.dto.LoginDTO;
-import com.example.backend.dto.RegistrationDTO;
+import com.example.backend.dto.authDTO.LoginDTO;
+import com.example.backend.dto.authDTO.RegistrationDTO;
 import com.example.backend.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
-
     @Autowired
     AuthService authService;
 
-    @GetMapping("/login")
+
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDto){
         try{
             return ResponseEntity.ok(authService.login(loginDto));

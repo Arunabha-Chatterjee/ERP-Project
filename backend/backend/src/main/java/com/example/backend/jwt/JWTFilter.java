@@ -44,7 +44,7 @@ public class JWTFilter extends OncePerRequestFilter {
         //Extract username from token
         String userName = jwtService.extractUserName(token);
 
-        //if username is null and user is not already authenticated
+        // Check if username is present and no authentication object is set yet
         if(userName != null && SecurityContextHolder.getContext().getAuthentication()==null){
 
             //Load user details (like roles, password) from database

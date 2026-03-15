@@ -1,7 +1,8 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.LoginDTO;
-import com.example.backend.dto.RegistrationDTO;
+import com.example.backend.dto.authDTO.AuthResponseDTO;
+import com.example.backend.dto.authDTO.LoginDTO;
+import com.example.backend.dto.authDTO.RegistrationDTO;
 import com.example.backend.jwt.JWTService;
 import com.example.backend.model.User;
 import com.example.backend.repository.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,16 +31,20 @@ public class AuthService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public String login(LoginDTO loginDto) {
+    public AuthResponseDTO login(LoginDTO loginDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginDto.getUsername(),
                         loginDto.getPassword()
                 )
         );
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         if (authentication.isAuthenticated()) {
-            return jwtService.generateToken(loginDto.getUsername());
+            return  AuthResponseDTO.builder()
+                    .username(userDetails.getUsername())
+                    .token(jwtService.generateToken(userDetails.getUsername()))
+                    .build();
         } else {
             throw new RuntimeException("Invalid credentials");
         }
@@ -48,7 +54,7 @@ public class AuthService {
         Optional<User> existUser =  userRepository.findByUsername(regDTO.getUsername());
 
         if(existUser.isPresent()){
-            throw new RuntimeException("User already exists");
+            throw new RuntimeException("Username already exists");
         }
         else {
             userRepository.save(
