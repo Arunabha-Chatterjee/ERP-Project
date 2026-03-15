@@ -18,18 +18,6 @@ public class DashboardService {
         return invoiceService.getDashBoardSummery(duration);
     }
 
-    public long getTotalNumberOfInvoices(String duration){
-        return invoiceService.getTotalNumberOfInvoices(duration);
-    }
-
-    public long getTotalItems(String duration){
-        return invoiceService.getTotalItems(duration);
-    }
-
-    public List<InvoiceResponseDTO> getTodayDayInvoices(){
-        return invoiceService.getTodayDayInvoices();
-    }
-
     public List<InvoiceResponseDTO> getRecentInvoice(){
         return invoiceService.getRecentInvoices();
     }

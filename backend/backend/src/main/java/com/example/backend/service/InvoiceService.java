@@ -112,43 +112,6 @@ public class InvoiceService {
         return result.getUniqueMappedResult();
     }
 
-    public long getTotalNumberOfInvoices(String duration) {
-        Query query = new Query();
-        query.addCriteria(buildDateCriteria(duration));
-        return mongoTemplate.count(query, Invoice.class);
-    }
-
-    public long getTotalItems(String duration) {
-        Aggregation aggregation = Aggregation.newAggregation(
-
-                Aggregation.match(
-                        buildDateCriteria(duration)
-                ),
-
-                Aggregation.lookup(
-                        "invoiceItems",
-                        "invoiceItemIds",
-                        "invoiceItemId",
-                        "invoiceItemDetails"
-                ),
-
-                Aggregation.unwind("invoiceItemDetails"),
-
-                Aggregation.group()
-                        .sum("invoiceItemDetails.quantity").as("totalUnits"),
-
-                Aggregation.project("totalUnits")
-                        .andExclude("_id")
-        );
-
-        AggregationResults<TotalUnitSaleByDurationDTO> result = mongoTemplate.aggregate(
-                aggregation, "invoices", TotalUnitSaleByDurationDTO.class
-        );
-
-        TotalUnitSaleByDurationDTO dto = result.getUniqueMappedResult();
-        return dto != null ? dto.getTotalUnits() : 0;
-    }
-
     public List<InvoiceResponseDTO> getRecentInvoices(){
         Query query = new Query()
                 .with(Sort.by(Sort.Direction.DESC, "createdAt"))
@@ -165,39 +128,6 @@ public class InvoiceService {
                             .totalAmount(invoice.getTotalAmount())
                             .build()
                 ).toList();
-    }
-
-    public List<InvoiceResponseDTO> getTodayDayInvoices() {
-
-        Aggregation aggregation = Aggregation.newAggregation(
-                Aggregation.match(
-                        buildDateCriteria("day")
-                ),
-
-                Aggregation.lookup(
-                        "invoiceItems",
-                        "invoiceItemIds",
-                        "invoiceItemId",
-                        "invoiceItemDetails"),
-
-                Aggregation.unwind("invoiceItemDetails"),
-
-                Aggregation.group("invoiceId")
-                        .first("invoiceId").as("invoiceId")
-                        .first("totalAmount").as("totalAmount")
-                        .first("customerId").as("customerId")
-                        .first("status").as("status")
-                        .first("createdAt").as("createdAt")
-                        .sum("invoiceItemDetails.quantity").as("totalItems"),
-
-                Aggregation.sort(Sort.Direction.DESC, "createdAt"),
-
-                Aggregation.limit(6)
-        );
-
-        return mongoTemplate.aggregate(
-                aggregation, "invoices", InvoiceResponseDTO.class
-        ).getMappedResults();
     }
 
     public List<String> addInvoiceItems(List<InvoiceItemDTO> dtoList, String invoiceId) {
@@ -363,12 +293,4 @@ public class InvoiceService {
                 .sum();
     }
 
-    public void invoiceStatusUpdate(String invoiceId, String status){
-
-        Invoice invoice = invoiceRepository.findByInvoiceId(invoiceId)
-                .orElseThrow(()-> new RuntimeException(invoiceId + " invoice not found"));
-
-        invoice.setStatus(status);
-        invoiceRepository.save(invoice);
-    }
 }

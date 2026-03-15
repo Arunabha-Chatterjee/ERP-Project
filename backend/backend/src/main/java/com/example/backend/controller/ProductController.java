@@ -42,23 +42,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/get-total-sale-amount/{productId}")
-    public ResponseEntity<?> getTotalProductAmount(@PathVariable String productId){
-        try {
-            return ResponseEntity.ok(productService.getTotalSaleAmount(productId));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
 
-    @GetMapping("/get-total-sale-unit/{productId}")
-    public ResponseEntity<?> getTotalSaleUnit(@PathVariable String productId) {
-        try {
-            return ResponseEntity.ok(productService.getTotalUnitSale(productId));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
 
     @GetMapping("/get-invoices/{productId}")
     public ResponseEntity<?> getInvoiceIds(@PathVariable String productId){
@@ -69,24 +53,6 @@ public class ProductController {
         }
     }
 
-
-    @GetMapping("/get-total-invoices/{productId}")
-    public ResponseEntity<?> getTotalInvoices(@PathVariable String productId){
-        try {
-            return ResponseEntity.ok(productService.getTotalInvoice(productId));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-
-    @GetMapping("/get-total-customer/{productId}")
-    public ResponseEntity<?> getTotalCustomer(@PathVariable String productId){
-        try {
-            return ResponseEntity.ok(productService.getTotalCustomer(productId));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
 
     @PostMapping("/add-product")
     public ResponseEntity<?> addProduct(@RequestBody ProductRequestDTO dto) {
