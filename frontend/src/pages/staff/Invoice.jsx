@@ -1,14 +1,7 @@
 import Header from "../../component/layout/Header.jsx";
 import InvoiceList from "../../component/invoice/invoiceList/InvoiceList.jsx";
 import InvoiceHeader from "../../component/invoice/invoiceList/InvoiceHeader.jsx";
-import CustomerDescription from "../../component/customer/customerTabs/CustomerDescription.jsx";
-import React from "react";
-
-import InvoiceDetails from "../../component/invoice/invoiceForm/InvoiceDetails.jsx";
-import InvoiceProducts from "../../component/invoice/invoiceTabs/InvoiceProducts.jsx";
-import ProductInvoices from "../../component/product/productTabs/ProductInvoices.jsx";
-import ProductDescription from "../../component/product/productTabs/ProductDescription.jsx";
-import Input from "../../component/common/Input.jsx";
+import {Outlet} from "react-router-dom";
 
 const Customer = () => {
 
@@ -23,8 +16,8 @@ const Customer = () => {
 
                 <div className='h-full min-h-0 flex-1 flex flex-col'>
                     <InvoiceHeader/>
-                    <div className='flex-1 overflow-y-auto min-h-0'>
-                        <CustomerDescription/>
+                    <div className='flex-1 overflow-y-auto min-h-0 mt-2'>
+                        <Outlet/>
                     </div>
                 </div>
             </div>

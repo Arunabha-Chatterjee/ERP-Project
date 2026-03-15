@@ -1,6 +1,20 @@
-import React from 'react';
+import useProductInvoices from "../../../hook/useProduct/useProductInvoices.js";
+import {useParams} from "react-router-dom";
+import Message from "../../common/Message.jsx";
+import getPaymentStatusClass from "../../common/getPaymentStatusClass.js";
 
 const ProductInvoices = () => {
+    const {productId} = useParams();
+    const {
+        productInvoices,
+        isProductInvoicesFetching,
+        productInvoicesError
+    } = useProductInvoices(productId);
+
+    if(isProductInvoicesFetching) return <Message message={"Loading..."}/>
+    if(productInvoicesError) return <Message message={productInvoicesError} />;
+    if(!productInvoices.length) return <Message message="No sales activity has been made." />;
+
     return (
         <div className='h-full flex flex-col'>
 
@@ -20,78 +34,16 @@ const ProductInvoices = () => {
                     </thead>
 
                     <tbody className='text-sm text-gray-300 border-b border-gray-900'>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1.5 pl-3'>1</td>
-                        <td className='py-1.5'>7828624</td>
-                        <td className='py-1.5'>&#8377;8546</td>
-                        <td className='py-1.5'>Arunabha Chatterjee</td>
-                        <td className='py-1.5 text-green-600'>Paid</td>
-                        <td className='py-1.5'>19/04/2025</td>
-                    </tr>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1.5 pl-3'>1</td>
-                        <td className='py-1.5'>7828624</td>
-                        <td className='py-1.5'>&#8377;8546</td>
-                        <td className='py-1.5'>Arunabha Chatterjee</td>
-                        <td className='py-1.5 text-green-600'>Paid</td>
-                        <td className='py-1.5'>19/04/2025</td>
-                    </tr>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1.5 pl-3'>1</td>
-                        <td className='py-1.5'>7828624</td>
-                        <td className='py-1.5'>&#8377;8546</td>
-                        <td className='py-1.5'>Arunabha Chatterjee</td>
-                        <td className='py-1.5 text-green-600'>Paid</td>
-                        <td className='py-1.5'>19/04/2025</td>
-                    </tr>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1.5 pl-3'>1</td>
-                        <td className='py-1.5'>7828624</td>
-                        <td className='py-1.5'>&#8377;8546</td>
-                        <td className='py-1.5'>Arunabha Chatterjee</td>
-                        <td className='py-1.5 text-green-600'>Paid</td>
-                        <td className='py-1.5'>19/04/2025</td>
-                    </tr>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1.5 pl-3'>1</td>
-                        <td className='py-1.5'>7828624</td>
-                        <td className='py-1.5'>&#8377;8546</td>
-                        <td className='py-1.5'>Arunabha Chatterjee</td>
-                        <td className='py-1.5 text-green-600'>Paid</td>
-                        <td className='py-1.5'>19/04/2025</td>
-                    </tr>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1.5 pl-3'>1</td>
-                        <td className='py-1.5'>7828624</td>
-                        <td className='py-1.5'>&#8377;8546</td>
-                        <td className='py-1.5'>Arunabha Chatterjee</td>
-                        <td className='py-1.5 text-green-600'>Paid</td>
-                        <td className='py-1.5'>19/04/2025</td>
-                    </tr>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1.5 pl-3'>1</td>
-                        <td className='py-1.5'>7828624</td>
-                        <td className='py-1.5'>&#8377;8546</td>
-                        <td className='py-1.5'>Arunabha Chatterjee</td>
-                        <td className='py-1.5 text-green-600'>Paid</td>
-                        <td className='py-1.5'>19/04/2025</td>
-                    </tr>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1.5 pl-3'>1</td>
-                        <td className='py-1.5'>7828624</td>
-                        <td className='py-1.5'>&#8377;8546</td>
-                        <td className='py-1.5'>Arunabha Chatterjee</td>
-                        <td className='py-1.5 text-green-600'>Paid</td>
-                        <td className='py-1.5'>19/04/2025</td>
-                    </tr>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1.5 pl-3'>1</td>
-                        <td className='py-1.5'>7828624</td>
-                        <td className='py-1.5'>&#8377;8546</td>
-                        <td className='py-1.5'>Arunabha Chatterjee</td>
-                        <td className='py-1.5 text-green-600'>Paid</td>
-                        <td className='py-1.5'>19/04/2025</td>
-                    </tr>
+                    {productInvoices.map((invoice, index) => (
+                        <tr key={index} className='border-b border-gray-900'>
+                            <td className='py-1.5 pl-3'>{index+1}</td>
+                            <td className='py-1.5'>{invoice.invoiceId}</td>
+                            <td className='py-1.5'>{invoice.totalAmount}</td>
+                            <td className='py-1.5'>{invoice.customerName}</td>
+                            <td className={`py-1.5 ${getPaymentStatusClass(invoice.status)}`}>{invoice.status}</td>
+                            <td className='py-1.5'>{invoice.date}</td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>

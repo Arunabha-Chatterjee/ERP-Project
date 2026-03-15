@@ -23,7 +23,7 @@ const NotFound = () => {
                 Go Back Home
             </button>
         </div>
-    );
+    );2
 };
 
 export default NotFound;

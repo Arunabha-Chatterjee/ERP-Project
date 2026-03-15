@@ -1,14 +1,10 @@
-import {createBrowserRouter} from "react-router-dom";
-import Dashboard from "../pages/staff/Dashboard.jsx";
+import { createBrowserRouter } from "react-router-dom";
 import RegistrationForm from "../component/auth/RegistrationForm.jsx";
 import LoginFrom from "../component/auth/LoginFrom.jsx";
 import NotFound from "../pages/staff/NotFound.jsx";
 import Customer from "../pages/staff/Customer.jsx";
-import ProductList from "../component/product/productList/ProductList.jsx";
 import Product from "../pages/staff/Product.jsx";
 import App from "../App.jsx";
-import InvoiceForm from "../pages/staff/InvoiceForm.jsx";
-import InvoiceListRow from "../component/invoice/invoiceList/InvoiceListRow.jsx";
 import Invoice from "../pages/staff/Invoice.jsx";
 import CustomerDescription from "../component/customer/customerTabs/CustomerDescription.jsx";
 import CustomerInvoices from "../component/customer/customerTabs/CustomerInvoices.jsx";
@@ -17,84 +13,123 @@ import CustomerSummery from "../component/customer/customerTabs/CustomerSummery.
 import ProductDescription from "../component/product/productTabs/ProductDescription.jsx";
 import ProductInvoices from "../component/product/productTabs/ProductInvoices.jsx";
 import ProductSummery from "../component/product/productTabs/ProductSummery.jsx";
+import InvoiceProducts from "../component/invoice/invoiceTabs/InvoiceProducts.jsx";
+import InvoiceDescription from "../component/invoice/invoiceTabs/InvoiceDescription.jsx";
+import Dashboard from "../pages/staff/Dashboard.jsx";
+import AddCustomerForm from "../component/customer/customerForms/AddCustomerForm.jsx";
+import AddProductForm from "../component/product/productForms/AddProductForm.jsx";
+import CreateInvoiceForm from "../component/invoice/invoiceForm/CreateInvoiceForm.jsx";
+import UpdateCustomer from "../component/customer/customerForms/UpdateCustomerForm.jsx";
+import UpdateProductForm from "../component/product/productForms/UpdateProductForm.jsx";
+import ProtectedRoute from "./ProtectedRoutes.jsx";
 
 const AppRoutes = createBrowserRouter([
     {
         path: '/',
-        element:<App/>,
-        children:[
+        element: <App />,
+        children: [
             {
-                path:'',
-                element:<Dashboard/>
-            },
-            {
-                path: 'register',
-                element:<RegistrationForm/>
+                path: 'registration',
+                element: <RegistrationForm />
             },
             {
                 path: 'login',
-                element:<LoginFrom/>
+                element: <LoginFrom />
             },
             {
-                path:'customers',
-                element:<Customer/>,
-                children:[
+                element: <ProtectedRoute />,
+                children: [
                     {
-                        path:'summery',
-                        element:<CustomerSummery/>
+                        path: '',
+                        element: <Dashboard />
                     },
                     {
-                        path:'description',
-                        element:<CustomerDescription/>
+                        path: 'customers',
+                        element: <Customer />,
+                        children: [
+                            {
+                                path: ':customerId/description',
+                                element: <CustomerDescription />
+                            },
+                            {
+                                path: ':customerId/summery',
+                                element: <CustomerSummery />
+                            },
+                            {
+                                path: ':customerId/invoices',
+                                element: <CustomerInvoices />
+                            },
+                            {
+                                path: ':customerId/products',
+                                element: <CustomerProducts />
+                            }
+                        ]
                     },
                     {
-                        path:'invoice',
-                        element:<CustomerInvoices/>
+                        path: 'products',
+                        element: <Product />,
+                        children: [
+                            {
+                                path: ':productId/description',
+                                element: <ProductDescription />
+                            },
+                            {
+                                path: ':productId/summery',
+                                element: <ProductSummery />
+                            },
+                            {
+                                path: ':productId/invoice',
+                                element: <ProductInvoices />
+                            }
+                        ]
                     },
                     {
-                        path:'products',
-                        element:<CustomerProducts/>
-                    }
-                ]
-            },
-            {
-                path:'products',
-                element:<Product/>,
-                children:[
-                    {
-                        path:'description',
-                        element: <ProductDescription/>
+                        path: 'invoices',
+                        element: <Invoice />,
+                        children: [
+                            {
+                                path: ':invoiceId/description',
+                                element: <InvoiceDescription />
+                            },
+                            {
+                                path: ':invoiceId/products',
+                                element: <InvoiceProducts />
+                            }
+                        ]
                     },
-                    {
-                        path: 'summery',
-                        element: <ProductSummery/>
-                    },
-                    {
-                        path: 'invoice',
-                        element: <ProductInvoices/>
-                    }
-                ]
-            },
-            {
-                path:'new-invoice',
-                element:<InvoiceForm/>
-            },
-            {
-                path:'invoices',
-                element:<Invoice/>,
-                children:[
-                    {
-                        path: 'description',
 
-                    }
+
+                    {
+                        path: "add-customer",
+                        element: <AddCustomerForm />
+                    },
+                    {
+                        path: "update-customer/:customerId",
+                        element: <UpdateCustomer />
+                    },
+
+                    {
+                        path: "add-product",
+                        element: <AddProductForm />
+                    },
+                    {
+                        path: "update-product/:productId",
+                        element: <UpdateProductForm />
+                    },
+
+                    {
+                        path: "add-invoice",
+                        element: <CreateInvoiceForm />
+                    },
                 ]
             }
+
         ]
     },
 
     {
-        path:'*',
-        element:<NotFound/>
+        path: '*',
+        element: <NotFound />
     },
 ])
 export default AppRoutes;

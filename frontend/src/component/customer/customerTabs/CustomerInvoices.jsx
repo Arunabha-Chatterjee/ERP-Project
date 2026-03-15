@@ -1,7 +1,20 @@
 import React from 'react';
-import CustomerHeader from "../customerList/CustomerHeader.jsx";
+import {useParams} from "react-router-dom";
+import useCustomerInvoices from "../../../hook/useCustomer/useCustomerInvoices.js";
+import Message from "../../common/Message.jsx";
+import {formatINR} from "../../../utills/formatINR.js";
+import getPaymentStatusClass from "../../common/getPaymentStatusClass.js";
 
 const CustomerInvoices = () => {
+
+    const {customerId}  = useParams();
+    const {customerInvoices,
+        customerInvoiceError,
+        isFetchingCustomerInvoices} = useCustomerInvoices(customerId);
+
+    if (isFetchingCustomerInvoices) return <Message message={"Loading..."}/>
+    if (customerInvoiceError) return <Message message={customerInvoiceError} />;
+    if(!customerInvoices.length) return <Message message="No sales activity has been made." />;
     return (
         <div className='h-full flex flex-col'>
 
@@ -23,17 +36,15 @@ const CustomerInvoices = () => {
                     </thead>
 
                     <tbody className='text-sm text-gray-300 border-b border-gray-900'>
-                    <tr className='border-b border-gray-900'>
-                        <td className='py-1 pl-3'>1</td>
-                        <td className='py-1'>7828624</td>
-                        <td className='py-1'>&#8377;8546</td>
-                        <td className='py-1 text-green-600'>Paid</td>
-                        <td className='py-1'>19/04/2025</td>
-                    </tr>
-
-
-
-
+                    {customerInvoices.map((invoice, index) => (
+                        <tr key={invoice.invoiceId} className='border-b border-gray-900 '>
+                            <td className='py-1 pl-3'>{index+1}</td>
+                            <td className='py-1'>{invoice.invoiceId}</td>
+                            <td className='py-1'>{formatINR(invoice.totalAmount)}</td>
+                            <td className={`py-1 ${getPaymentStatusClass(invoice.status)}`}>{invoice.status}</td>
+                            <td className='py-1'>{invoice.date}</td>
+                        </tr>
+                    ))}
 
                     </tbody>
                 </table>

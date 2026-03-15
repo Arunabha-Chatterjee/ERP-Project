@@ -1,13 +1,8 @@
-import React from 'react';
-import CustomerList from "../../component/customer/customerList/CustomerList.jsx";
-
-import CustomerProducts from "../../component/customer/customerTabs/CustomerProducts.jsx";
 import ProductHeader from "../../component/product/productList/ProductHeader.jsx";
-import ProductInvoices from "../../component/product/productTabs/ProductInvoices.jsx";
-import ProductList from "../../component/product/productList/ProductList.jsx";
-import ProductDescription from "../../component/product/productTabs/ProductDescription.jsx";
-import ProductSummery from "../../component/product/productTabs/ProductSummery.jsx";
 import Header from "../../component/layout/Header.jsx";
+import {Outlet} from "react-router-dom";
+import ProductList from "../../component/product/productList/ProductList.jsx";
+
 
 const Product = () => {
     return (
@@ -22,7 +17,7 @@ const Product = () => {
                 <div className='h-full min-h-0 flex-1 flex flex-col'>
                     <ProductHeader/>
                     <div className='flex-1 overflow-y-auto min-h-0'>
-                        <ProductInvoices/>
+                        <Outlet/>
                     </div>
                 </div>
             </div>
