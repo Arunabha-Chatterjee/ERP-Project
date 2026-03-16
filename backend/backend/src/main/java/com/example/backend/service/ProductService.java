@@ -62,7 +62,7 @@ public class ProductService {
     }
 
     public List<ProductResponseDTO> getAllProduct(){
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findAllByOrderByProductIdDesc();
 
         return products.stream()
                 .map(product-> ProductResponseDTO.builder()

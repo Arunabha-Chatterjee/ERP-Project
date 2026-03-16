@@ -44,7 +44,7 @@ const AddCustomerForm = () => {
                         </button>
                     </div>
 
-                    <div className='grid grid-cols-2 gap-x-1 gap-y-5 py-4 px-3 text-white'>
+                    <div className='grid grid-cols-2 gap-x-1 gap-y-2 py-4 px-3 text-white'>
                         <div className='col-span-2'>
                             <input
                                 className='w-full border-2 border-gray-800 py-1 px-2 placeholder-gray-500'
@@ -58,7 +58,7 @@ const AddCustomerForm = () => {
                                     }
                                 })}
                             />
-                            {errors.name?.message && <p className='text-red-600 text-sm'>{errors.name.message}</p>}
+                            <p className='text-red-600 text-xs min-h-4'>{errors.name?.message || ""}</p>
                         </div>
 
 
@@ -75,7 +75,7 @@ const AddCustomerForm = () => {
                                 type='text'
                                 placeholder='Email'
                             />
-                            {errors.email?.message && <p className='text-red-600 text-sm'>{errors.email.message}</p>}
+                            <p className='text-red-600 text-xs min-h-4'>{errors.email?.message || ""}</p>
                         </div>
 
                         <div>
@@ -92,7 +92,7 @@ const AddCustomerForm = () => {
                                 type="number"
                                 placeholder="Mobile"
                             />
-                            {errors.mobile?.message && <p className='text-red-600 text-sm'>{errors.mobile.message}</p>}
+                            <p className='text-red-600 text-xs min-h-4'>{errors.mobile?.message || ""}</p>
                         </div>
 
                         <div className="col-span-2">
@@ -107,7 +107,7 @@ const AddCustomerForm = () => {
                                 })}
                                 placeholder='Address'
                             />
-                            {errors.address?.message && <p className='text-red-600 text-sm'>{errors.address.message}</p>}
+                            <p className='text-red-600 text-xs min-h-4'>{errors.address?.message || ""}</p>
                         </div>
 
                         <div>
@@ -122,7 +122,7 @@ const AddCustomerForm = () => {
                                 })}
                                 placeholder='City'
                             />
-                            {errors.city?.message && <p className='text-red-600 text-sm'>{errors.city.message}</p>}
+                            <p className='text-red-600 text-xs min-h-4'>{errors.city?.message || ""}</p>
                         </div>
 
                         <div>
@@ -138,12 +138,12 @@ const AddCustomerForm = () => {
                                 })}
                                 placeholder='Pin Code'
                             />
-                            {errors.pin?.message && <p className='text-red-600 text-sm'>{errors.pin.message}</p>}
+                            <p className='text-red-600 text-xs min-h-4'>{errors.pin?.message || ""}</p>
                         </div>
 
                         <button className='border-2 border-gray-700 py-2 px-2 col-span-2 bg-[#101828] text-white
                         cursor-pointer hover:bg-gray-800'
-                        type="submit">
+                    type="submit">
                             {isCustomerCreating ? "Loading" : "ADD CUSTOMER"}
                         </button>
 

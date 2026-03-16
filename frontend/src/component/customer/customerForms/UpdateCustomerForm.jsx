@@ -68,7 +68,7 @@ const UpdateCustomerForm = () => {
                             </button>
                         </div>
 
-                        <div className='grid grid-cols-2 gap-x-1 gap-y-5 py-4 px-3 text-white'>
+                        <div className='grid grid-cols-2 gap-x-1 gap-y-2 py-4 px-3 text-white'>
                             <div className='col-span-2'>
                                 <input
                                     className='w-full border-2 border-gray-800 py-1 px-2 placeholder-gray-500'
@@ -82,7 +82,7 @@ const UpdateCustomerForm = () => {
                                         }
                                     })}
                                 />
-                                {errors.name?.message && <p className='text-red-600 text-sm'>{errors.name.message}</p>}
+                                <p className='text-red-600 text-xs min-h-4'>{errors.name?.message || ""}</p>
                             </div>
 
 
@@ -99,7 +99,7 @@ const UpdateCustomerForm = () => {
                                     type='text'
                                     placeholder='Email'
                                 />
-                                {errors.email?.message && <p className='text-red-600 text-sm'>{errors.email.message}</p>}
+                                <p className='text-red-600 text-xs min-h-4'>{errors.email?.message || ""}</p>
                             </div>
 
                             <div>
@@ -116,7 +116,7 @@ const UpdateCustomerForm = () => {
                                     type="number"
                                     placeholder="Mobile"
                                 />
-                                {errors.mobile?.message && <p className='text-red-600 text-sm'>{errors.mobile.message}</p>}
+                                <p className='text-red-600 text-xs min-h-4'>{errors.mobile?.message || ""}</p>
                             </div>
 
                             <div className="col-span-2">
@@ -131,7 +131,7 @@ const UpdateCustomerForm = () => {
                                     })}
                                     placeholder='Address'
                                 />
-                                {errors.address?.message && <p className='text-red-600 text-sm'>{errors.address.message}</p>}
+                                <p className='text-red-600 text-xs min-h-4'>{errors.address?.message || ""}</p>
                             </div>
 
                             <div>
@@ -146,7 +146,7 @@ const UpdateCustomerForm = () => {
                                     })}
                                     placeholder='City'
                                 />
-                                {errors.city?.message && <p className='text-red-600 text-sm'>{errors.city.message}</p>}
+                                <p className='text-red-600 text-xs min-h-4'>{errors.city?.message || ""}</p>
                             </div>
 
                             <div>
@@ -162,7 +162,7 @@ const UpdateCustomerForm = () => {
                                     })}
                                     placeholder='Pin Code'
                                 />
-                                {errors.pin?.message && <p className='text-red-600 text-sm'>{errors.pin.message}</p>}
+                                <p className='text-red-600 text-xs min-h-4'>{errors.pin?.message || ""}</p>
                             </div>
 
                             <button

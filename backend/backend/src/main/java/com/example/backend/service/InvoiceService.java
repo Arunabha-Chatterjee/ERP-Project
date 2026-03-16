@@ -254,7 +254,7 @@ public class InvoiceService {
 
 
     public List<InvoiceResponseDTO> getAllInvoices() {
-        List<Invoice> invoiceList = invoiceRepository.findAll();
+        List<Invoice> invoiceList = invoiceRepository.findAllByOrderByInvoiceIdDesc();
 
         return invoiceList.stream().map(
                 invoice ->

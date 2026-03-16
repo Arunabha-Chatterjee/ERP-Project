@@ -41,6 +41,7 @@ const AddProductForm = () => {
                         <span>Add Product</span>
                         <button className='text-lg px-3 h-full
                     hover:bg-red-600 cursor-pointer'
+                            type="button"
                             onClick={() => navigate("/products")}>X
                         </button>
                     </div>
@@ -85,7 +86,8 @@ const AddProductForm = () => {
                     </div>
 
                     <button className='w-[95%] border-2 mb-2 border-gray-700 py-2 col-span-2 bg-[#101828] text-white
-                        cursor-pointer hover:bg-gray-800'>
+                        cursor-pointer hover:bg-gray-800'
+                        type="submit">
                         {isProductCreating ? "Loading" : "ADD Product"}
                     </button>
 
